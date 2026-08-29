@@ -1,0 +1,27 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AwsAuditMcpReadOnly",
+      "Effect": "Allow",
+      "Action": [
+        "iam:ListUsers",
+        "iam:ListAccessKeys",
+        "iam:ListMFADevices",
+        "iam:GetLoginProfile",
+        "iam:GetAccountSummary",
+        "s3:ListAllMyBuckets",
+        "s3:GetBucketPublicAccessBlock",
+        "s3:GetBucketPolicy",
+        "s3:GetBucketAcl",
+        "s3:GetBucketLocation",
+        "s3:GetAccountPublicAccessBlock",
+        "ec2:DescribeSecurityGroups",
+        "cloudtrail:DescribeTrails",
+        "cloudtrail:GetTrailStatus",
+        "sts:GetCallerIdentity"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
