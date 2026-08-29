@@ -64,11 +64,11 @@ Every tool returns the same envelope: `{check, ok, findings[], scanned}`. Every 
 
 ```json
 {
-  "check": "stale_access_keys",
+  "check": "iam.stale_access_keys",
   "ok": false,
   "findings": [
     {
-      "check": "stale_access_keys",
+      "check": "iam.stale_access_keys",
       "severity": "HIGH",
       "title": "Active access key is 412 days old and the user has no MFA",
       "resource": "arn:aws:iam::111111111111:user/ci-deploy",
