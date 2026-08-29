@@ -1,0 +1,15 @@
+# Local-only project docs, never public (see ~/projects/REPO-PUBLIC-CHECKLIST.md)
+docs/
+CLAUDE.md
+
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+.env
+.coverage
