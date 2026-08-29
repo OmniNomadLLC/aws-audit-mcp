@@ -1,6 +1,8 @@
 # aws-audit-mcp
 
-<!-- CI badge placeholder: add once the workflow lands -->
+[![CI](https://github.com/OmniNomadLLC/aws-audit-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/OmniNomadLLC/aws-audit-mcp/actions/workflows/ci.yml) [![PyPI](https://img.shields.io/pypi/v/aws-audit-mcp)](https://pypi.org/project/aws-audit-mcp/) <!-- PyPI badge activates after the first release -->
+
+
 
 Read-only AWS security audits, exposed as MCP tools. Point an AI agent at this server and it can answer "is this account in good shape?" with evidence instead of vibes: stale access keys, users without MFA, root account posture, public S3 buckets, world-open security groups, and CloudTrail coverage, each returned as normalized findings with severities an agent can reason about.
 
@@ -16,7 +18,13 @@ Honesty requires one more sentence: the real security boundary is IAM, not this 
 
 ## Quickstart
 
-Install from git (or a local clone):
+Install from PyPI (available after the first release):
+
+```bash
+pip install aws-audit-mcp
+```
+
+Or install from git (or a local clone):
 
 ```bash
 pip install git+https://github.com/OmniNomadLLC/aws-audit-mcp.git
