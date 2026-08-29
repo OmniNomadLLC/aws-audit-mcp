@@ -15,7 +15,9 @@ SENSITIVE_PORTS = {22, 3389, 3306, 5432, 6379, 9200, 27017}
 
 def _world_open_cidrs(permission: dict[str, Any]) -> list[str]:
     cidrs = [r["CidrIp"] for r in permission.get("IpRanges", []) if r.get("CidrIp") == "0.0.0.0/0"]
-    cidrs += [r["CidrIpv6"] for r in permission.get("Ipv6Ranges", []) if r.get("CidrIpv6") == "::/0"]
+    cidrs += [
+        r["CidrIpv6"] for r in permission.get("Ipv6Ranges", []) if r.get("CidrIpv6") == "::/0"
+    ]
     return cidrs
 
 

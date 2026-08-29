@@ -50,7 +50,9 @@ def account_security_summary() -> dict:
     except ClientError as err:
         if err.response["Error"]["Code"] != "NoSuchPublicAccessBlockConfiguration":
             raise
-    pab_flags = ("BlockPublicAcls", "IgnorePublicAcls", "BlockPublicPolicy", "RestrictPublicBuckets")
+    pab_flags = (
+        "BlockPublicAcls", "IgnorePublicAcls", "BlockPublicPolicy", "RestrictPublicBuckets",
+    )
     if pab is None or not all(pab.get(flag) for flag in pab_flags):
         findings.append(
             finding(
