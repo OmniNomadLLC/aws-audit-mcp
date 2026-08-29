@@ -1,0 +1,9 @@
+target-version = "py311"
+line-length = 100
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]
+
+[lint.per-file-ignores]
+# Evals assert on many shapes in one place; long-ish test bodies are fine.
+"evals/*" = ["SIM117"]
