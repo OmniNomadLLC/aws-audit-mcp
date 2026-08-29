@@ -65,6 +65,10 @@ Credentials resolve through the standard boto3 chain (`AWS_PROFILE`, environment
 | `audit_world_open_security_groups(region=None)` | ingress from 0.0.0.0/0 or ::/0 | HIGH on admin/db ports or all traffic, MEDIUM otherwise |
 | `audit_trail_posture(region=None)` | trail exists, logging, multi-region, log validation, CMK | CRITICAL / MEDIUM / LOW |
 | `account_security_summary()` | account id, IAM summary, account-level S3 public access block | HIGH / MEDIUM |
+| `audit_rds_posture(region=None)` | publicly accessible, unencrypted, unprotected RDS instances | HIGH / MEDIUM / LOW |
+| `audit_ebs_exposure(region=None)` | unencrypted EBS volumes and publicly shared snapshots | CRITICAL / MEDIUM |
+| `audit_lambda_resource_policies(region=None)` | Lambda functions invocable by anyone or by unconditioned service principals | HIGH / MEDIUM |
+| `audit_full_posture()` | runs every audit above and returns severity counts, a weighted posture score and a letter grade | aggregate |
 
 Every tool returns the same envelope: `{check, ok, findings[], scanned}`. Every finding has `{check, severity, title, resource, detail}` with severity one of LOW, MEDIUM, HIGH, CRITICAL. The `scanned` count exists so a clean result is trustworthy: `scanned: 0, findings: []` and `scanned: 200, findings: []` are very different answers.
 
