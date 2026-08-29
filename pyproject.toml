@@ -1,16 +1,28 @@
 [project]
 name = "aws-audit-mcp"
-version = "0.1.0"
+version = "0.2.0"
 description = "Read-only AWS security audit tools for AI agents, served over the Model Context Protocol"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "OmniNomad LLC" }]
 keywords = ["mcp", "aws", "security", "audit", "model-context-protocol"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+]
 dependencies = [
     "mcp>=1.2",
     "boto3>=1.34",
 ]
+
+[project.urls]
+Homepage = "https://github.com/OmniNomadLLC/aws-audit-mcp"
+Issues = "https://github.com/OmniNomadLLC/aws-audit-mcp/issues"
+Source = "https://github.com/OmniNomadLLC/aws-audit-mcp"
 
 [project.optional-dependencies]
 dev = [
