@@ -6,6 +6,20 @@
 
 Read-only AWS security audits, exposed as MCP tools. Point an AI agent at this server and it can answer "is this account in good shape?" with evidence instead of vibes: stale access keys, users without MFA, root account posture, public S3 buckets, world-open security groups, and CloudTrail coverage, each returned as normalized findings with severities an agent can reason about.
 
+![Demo: auditing a deliberately misconfigured account](assets/demo.gif)
+
+## Try it in 60 seconds, no AWS account needed
+
+```bash
+pip install "aws-audit-mcp[demo]"
+curl -sO https://raw.githubusercontent.com/OmniNomadLLC/aws-audit-mcp/main/examples/demo.py
+python demo.py
+```
+
+The demo builds a deliberately misconfigured account in [moto](https://github.com/getmoto/moto)
+(an in-memory AWS emulator, nothing leaves your machine) and runs the aggregated audit against
+it: seven findings, a posture score, and a letter grade, exactly what an agent gets back.
+
 ## Read-only, and provably so
 
 This server never mutates anything. That claim is enforced in three layers, not asserted once in a docstring:
@@ -98,6 +112,19 @@ Every tool returns the same envelope: `{check, ok, findings[], scanned}`. Every 
 
 ## Architecture
 
+```mermaid
+flowchart LR
+    A[MCP client / AI agent] -- stdio --> B[server.py\nautodiscovery]
+    B --> T1[tools/iam.py]
+    B --> T2[tools/s3.py]
+    B --> T3[tools/ec2.py]
+    B --> T4[tools/cloudtrail.py]
+    B --> T5[tools/rds.py, ebs.py,\nawslambda.py, account.py]
+    B --> F[tools/full.py\naggregated posture]
+    T1 & T2 & T3 & T4 & T5 --> C[common.py\nfinding / report / aws_client]
+    C -- read-only API calls --> AWS[(AWS account)]
+```
+
 Six lines, because that is all there is:
 
 - `server.py` autodiscovers tool modules: anything in `tools/` exposing `register(mcp)` is loaded.
@@ -111,6 +138,10 @@ Six lines, because that is all there is:
 - **Contract evals** assert that every tool is documented, typed, annotated read-only, and returns the standard envelope.
 - **A bad-account scenario eval** builds a deliberately misconfigured moto account and asserts the tools catch every planted issue.
 - CI runs all of it on every push.
+
+This project is built AI-assisted, with the discipline that makes that safe: every change
+passes the unit tests, the contract evals, and the machine-checked read-only gate before it
+lands on main. Every claim in this README is verified by CI, not by the author's memory.
 
 ## Related
 

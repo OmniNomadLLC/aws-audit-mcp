@@ -25,6 +25,9 @@ Issues = "https://github.com/OmniNomadLLC/aws-audit-mcp/issues"
 Source = "https://github.com/OmniNomadLLC/aws-audit-mcp"
 
 [project.optional-dependencies]
+demo = [
+    "moto[all]>=5.0",
+]
 dev = [
     "pytest>=8.0",
     "moto[all]>=5.0",
